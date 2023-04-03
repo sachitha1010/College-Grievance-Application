@@ -18,56 +18,44 @@ const theme = createTheme({
 
 function Signup() {
   
-  const [inputs, setInputs] = useState({
-    name: "",
-    email: "",
-    password: "",
-    role: "",
-  });
-  const handleChange = (e) => {
-    setInputs((prev) => ({
-      ...prev,
-      [e.target.name]: e.target.value,
-    }));
-  };
-  const sendRequest = async () => {
-    const res = await axios
-      .post("http://localhost:3001/api/signup", {
-        name: inputs.name,
-        email: inputs.email,
-        password: inputs.password,
-        role:inputs.role,
-      })
-      .catch((err) => console.log(err));
-    const data = await res.data;
-    return data;
-  };
-  
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // send http request
-    sendRequest().then();
-  };
+  const [name, setName] = useState('');
+  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('');
+  const [role, setRole] = useState('');
+ 
+  async function register(ev) {
+    ev.preventDefault();
+    const response = await fetch('http://localhost:3001/api/register', {
+      method: 'POST',
+      body: JSON.stringify({name,email,password,role}),
+      headers: {'Content-Type':'application/json'},
+    });
+    if (response.ok) {
+      alert('registration successful');
+    } else {
+      alert('registration failed');
+    }
+  }
   return (
 
     <div className="main">
         <div className="boxsignup" style={{ padding:"150px"}}>
                         <h1>Sign Up</h1>
                         <p></p>
-                        <TextField inputProps={{ sx: {width: '300px'} }}  id="outlined-basic" label="Name" variant="outlined" onChange={handleChange} value={inputs.name} />
+                        <TextField inputProps={{ sx: {width: '300px'} }}  id="outlined-basic" label="Name" variant="outlined" value={name} onChange={ev => setName(ev.target.value)}  />
                         <p></p>
-                        <TextField inputProps={{ sx: {width: '300px'} }}  id="outlined-basic" label="Email" variant="outlined" onChange={handleChange} value={inputs.email}/>
+                        <TextField inputProps={{ sx: {width: '300px'} }}  id="outlined-basic" label="Email" variant="outlined" value={email} onChange={ev => setEmail(ev.target.value)} />
                         <p></p>
-                        <TextField inputProps={{ sx: {width: '300px'} }}  id="outlined-basic" label="Password" variant="outlined" onChange={handleChange} value={inputs.password} />
+                        <TextField inputProps={{ sx: {width: '300px'} }}  id="outlined-basic" label="Password" variant="outlined" value={password}y onChange={ev => setPassword(ev.target.value)}  />
                         <p></p>
                         <FormControl fullWidth>
                             <InputLabel id="demo-simple-select-label">Role</InputLabel>
                             <Select
                                 labelId="demo-simple-select-label"
                                 id="demo-simple-select"
-                                value={inputs.role}
+                                value={role}
                                 label="Role"
-                                onChange={handleChange}>
+                                onChange={ev => setRole(ev.target.value)}>
                                   
                                 <MenuItem value={"student"}>Student</MenuItem>
                                 <MenuItem value={"faculty"}>Faculty</MenuItem>
@@ -76,7 +64,7 @@ function Signup() {
                         </FormControl>
                         <p></p>
                         <ThemeProvider theme={theme}>
-                        <Button  style={{width: '329px',fontSize:"14px",fontWeight:'600',padding:'12px'}}variant="contained" onSubmit={handleSubmit}>Signup</Button>
+                        <Button  style={{width: '329px',fontSize:"14px",fontWeight:'600',padding:'12px'}}variant="contained" onClick={register}>Signup</Button>
                         </ThemeProvider>
             </div>
     </div>

@@ -10,14 +10,17 @@ import Canteen from "./pages/Canteen";
 import Department from "./pages/Department";
 import Giveapproval from "./pages/Admin/giveapproval";
 import Providesolution from "./pages/Admin/providesolution";
+import {UserContextProvider} from "./UserContext";
 
 function App() {
+  
   return (
     <BrowserRouter>
+    <UserContextProvider>
     <Routes>
-    <Route path="/"  element={<GeneralPage/>} />
+    <Route path="/general"  element={<GeneralPage/>} />
     <Route path="/mygrievance" element={<MyGrievance/>}/>
-    <Route path="/login" element={<Login/>} />
+    <Route path="/" element={<Login/>} />
     <Route path="/signup" element={<Signup/>} />
     <Route path="/hostel" element={<Hostel/>} />
     <Route path="/department" element={<Department/>} />
@@ -25,6 +28,7 @@ function App() {
     <Route path="/giveapproval" element={<Giveapproval/>} />
     <Route path="/providesolution" element={<Providesolution/>} />
     </Routes>
+    </UserContextProvider>
     </BrowserRouter>
   );
 }

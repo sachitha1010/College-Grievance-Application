@@ -2,6 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import './generalPage.css';
 import styled from 'styled-components';
 import Nav from '../components/nav';
+import Header from "../components/header";
 import ThumbUpIcon from '@mui/icons-material/ThumbUp';
 import CommentIcon from '@mui/icons-material/Comment';
 import { GRIEVANCE_URL } from '../API/config';
@@ -11,6 +12,7 @@ import {
 } from "@mui/material";
 import {MenuItem,InputLabel,Select,FormControl} from '@mui/material';
 import moment from "moment";
+
 const Container = styled.div`
   background: #ffffff;
   display: flex;
@@ -61,7 +63,7 @@ export default function Department(){
 
   return (
     <div className="general">
-      <div className="bar"><h className='logo'>Grievance</h></div>
+      <Header />
       <div style={{paddingTop:"20px",paddingLeft:"1050px"}}>
         <table>
           <tr>

@@ -10,6 +10,7 @@ import { ADMIN_URL} from '../../API/config';
 import axios from "axios";
 import { GRIEVANCE_URL } from "../../API/config";
 import moment from "moment";
+import Header from "../../components/header";
 
 const Container = styled.div`
   background: #ffffff;
@@ -79,7 +80,7 @@ export default function Giveapproval(){
 
   return (
     <div className="general">
-      <div className="bar"><h className='logo'>Grievance</h></div>
+      <Header/>
       <Adminnav />
       <Container>
       <List>
