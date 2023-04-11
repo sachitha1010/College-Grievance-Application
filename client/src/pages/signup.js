@@ -5,6 +5,7 @@ import { Button } from '@mui/material';
 import { createTheme, ThemeProvider } from '@mui/material/styles';
 import {MenuItem,InputLabel,Select,FormControl} from '@mui/material';
 import axios from "axios";
+import { Link,Navigate } from 'react-router-dom';
 
 
 const theme = createTheme({
@@ -22,6 +23,7 @@ function Signup() {
   const [password, setPassword] = useState('');
   const [email, setEmail] = useState('');
   const [role, setRole] = useState('');
+  const [redirect,setRedirect] = useState(false);
  
   async function register(ev) {
     ev.preventDefault();
@@ -32,12 +34,15 @@ function Signup() {
     });
     if (response.ok) {
       alert('registration successful');
+      setRedirect(true);
     } else {
       alert('registration failed');
     }
   }
+  if(redirect){
+    return <Navigate to={'/login'} />
+  }
   return (
-
     <div className="main">
         <div className="boxsignup" style={{ padding:"150px"}}>
                         <h1>Sign Up</h1>
