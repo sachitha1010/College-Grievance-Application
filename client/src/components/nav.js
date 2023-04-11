@@ -17,7 +17,6 @@ function Nav(){
   const [style, setStyle] = useState("sidenav");
   const tocollapse=()=>{
     setCollapse(!collapse);
-    console.log(style);
     if(collapse){
       setStyle("sidenav2");
     }

@@ -30,7 +30,7 @@ const Header = () => {
       const name = userInfo?.name;
 
       if (redirect)  {
-        return <Navigate to={'/login'} />
+        return <Navigate to={'/'} />
       }
   return (
     <div className="bar" >

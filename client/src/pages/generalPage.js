@@ -28,7 +28,7 @@ const List = styled.div`
 const Card = styled.div`
   margin: 20px;
   background: #fff;
-  height: 400px;
+  height: auto;
   width: 1000px;
   border-radius: 20px;
   box-shadow: 0 10px 20px rgba(0, 0, 0, 0.25);
@@ -40,6 +40,7 @@ const Card = styled.div`
 
 export default function GeneralPage(){
   const[grievance,setGrievance]=useState();
+  const [showMore, setShowMore] = useState(false);
 
   const sendrequest = async ()=>{
     const res = await axios.get(`${GRIEVANCE_URL}`).catch((err)=>console.log(err));
@@ -50,6 +51,9 @@ export default function GeneralPage(){
   useEffect(()=>{
     sendrequest().then((data)=>setGrievance(data));
   },[]);
+  const toggleShowMore = () => {
+    setShowMore(!showMore);
+  };
 
   console.log(grievance);
   const handleVotes =(id) =>{
@@ -79,7 +83,13 @@ export default function GeneralPage(){
               </tr>
             </table>
             
-            <p style={{fontSize:"17px",fontWeight:"500"}}>{grievance.body}</p>
+            <p>{showMore ? grievance.body : `${grievance.body.slice(0, 400)}${grievance.body.length > 400 ? '...' : ''}`}</p>
+
+            {grievance.body.length > 400 && (
+            <button style={{width: '100px',fontSize:"14px",padding:'8px',textAlign:"left",background:"#8DD3BB",border:"none",borderRadius:"5px",cursor:"pointer"}} onClick={toggleShowMore}>
+              {showMore ? 'Show less' : 'Show more'}
+            </button>
+            )}
             {/* <CardMedia
           component="img"
       height={130}
@@ -94,11 +104,9 @@ export default function GeneralPage(){
                   <td>
                      <p onClick={()=>handleVotes(grievance._id)} style={{width:"150px",display:"flex"}}><div style={{marginRight:"5px"}}><ThumbUpIcon></ThumbUpIcon></div>{grievance.votes} Votes</p>
                   </td>
+                  
                   <td>
-                      <p style={{width:"200px",display:"flex"}}><div style={{marginRight:"5px"}}><CommentIcon></CommentIcon></div>Comments</p>
-                  </td>
-                  <td>
-                  <p style={{ marginLeft:"500px"}}>{moment(grievance.createdAt).fromNow()}</p>
+                  <p style={{ marginLeft:"700px"}}>{moment(grievance.createdAt).fromNow()}</p>
                   </td>
                 </tr>
               </table>

@@ -40,7 +40,7 @@ function Signup() {
     }
   }
   if(redirect){
-    return <Navigate to={'/login'} />
+    return <Navigate to={'/'} />
   }
   return (
     <div className="main">

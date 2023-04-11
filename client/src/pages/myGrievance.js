@@ -11,7 +11,7 @@ import TextField from '@mui/material/TextField';
 import {MenuItem,InputLabel,Select} from '@mui/material';
 import TextareaAutosize from '@mui/base/TextareaAutosize';
 import axios from "axios";
-import { padding } from '@mui/system';
+import Header from '../components/header';
 
 const theme = createTheme({
   palette: {
@@ -85,8 +85,8 @@ function MyGrievance() {
 
   return (
 <div className="gen">
+  <Header />
   <Nav></Nav>
-  <div className="bar1"><h className='logo'>Grievance</h></div>
   <div className='whole'>
     <div className="check">
       <div className='heading'>
@@ -137,8 +137,10 @@ function MyGrievance() {
                         <p></p>
                         {hosteldet && (
                           <div style={{display:"flex"}}>
-                            
-                            <FormControl fullWidth style={{width:"500px"}}>
+                            <table>
+                              <tr>
+                              <td>
+                            <FormControl fullWidth style={{width:"150px"}}>
                             <InputLabel id="demo-simple-select-label">Floor</InputLabel>
                             <Select 
                                 labelId="demo-simple-select-label"
@@ -158,8 +160,9 @@ function MyGrievance() {
                                 <MenuItem value={8}>8</MenuItem>
                             </Select>
                         </FormControl>
-                        
-                        <FormControl fullWidth style={{width:"500px"}}>
+                        </td>
+                        <td>
+                        <FormControl fullWidth style={{width:"150px"}}>
                             <InputLabel id="demo-simple-select-label">Block</InputLabel>
                             <Select 
                                 labelId="demo-simple-select-label"
@@ -176,7 +179,9 @@ function MyGrievance() {
                                 <MenuItem value={"K"}>K</MenuItem>
                             </Select>
                         </FormControl>
-                        <FormControl fullWidth style={{width:"500px"}}>
+                        </td>
+                        <td>
+                        <FormControl fullWidth style={{width:"150px"}}>
                             <InputLabel id="demo-simple-select-label">Gender</InputLabel>
                             <Select 
                                 labelId="demo-simple-select-label"
@@ -190,14 +195,19 @@ function MyGrievance() {
                                 <MenuItem value={"Girls"}>Girls Hostel</MenuItem>
                             </Select>
                         </FormControl>
-                           
+                        </td>
+                        </tr>
+                        </table>
                       
                           </div>
                           )}
 
                         {deptdet && (
-                          <div style={{display:"flex"}} >
-                            <FormControl fullWidth style={{width:"500px"}}>
+                          <div >
+                            <table>
+                              <tr>
+                                <td>
+                            <FormControl fullWidth style={{width:"200px"}}>
                             <InputLabel id="demo-simple-select-label">Year</InputLabel>
                             <Select
                                 labelId="demo-simple-select-label"
@@ -215,7 +225,9 @@ function MyGrievance() {
                             </Select>
 
                         </FormControl>
-                        <FormControl fullWidth style={{width:"500px"}}>
+                        </td>
+                        <td>
+                        <FormControl fullWidth style={{width:"200px"}}>
                             <InputLabel id="demo-simple-select-label">Department</InputLabel>
                             <Select
                                 labelId="demo-simple-select-label"
@@ -236,7 +248,9 @@ function MyGrievance() {
                                 <MenuItem value={"Other"}>Other</MenuItem>
                             </Select>
                         </FormControl>
-                            
+                        </td>
+                        </tr>
+                        </table>
                           </div>
                           )}
 
@@ -273,9 +287,7 @@ function MyGrievance() {
         <div className='box1' style={{padding:"12px 430px"}}>
           <table>
             <tr>
-              <td><ThemeProvider theme={theme}>
-                        <Button  style={{width: '100px',fontSize:"14px",padding:'8px'}}variant="contained">Clear</Button>
-                        </ThemeProvider></td>
+              
               <td><ThemeProvider theme={theme}>
                         <Button  style={{width: '100px',fontSize:"14px",padding:'8px'}} variant="contained" onClick={handleSubmit}>Post</Button>
                         </ThemeProvider></td>
